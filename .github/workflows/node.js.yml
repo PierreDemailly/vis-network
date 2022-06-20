@@ -2,8 +2,7 @@ name: Node.js CI
 
 on:
   push:
-    branches:
-      - main
+    branches: main
   pull_request:
 
 jobs:
@@ -11,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [18.x]
+        node-version: [16.x]
       fail-fast: false
     steps:
       - uses: actions/checkout@v2
