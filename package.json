@@ -5,7 +5,7 @@
   "type": "module",
   "exports": "./index.js",
   "scripts": {
-    "test": "tap --check-coverage= --node-arg=' --no-warnings' --node-arg='--experimental-loader' --node-arg='@istanbuljs/esm-loader-hook' test/*test.js",
+    "test": "tap --node-arg=' --no-warnings' --node-arg='--experimental-loader' --node-arg='@istanbuljs/esm-loader-hook' test/*test.js",
     "test:watch": "npm test -- --watch",
     "start": "npm run build && http-server ./dist",
     "build": "node esbuild.config.js"
