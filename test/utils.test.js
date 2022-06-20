@@ -30,7 +30,7 @@ const titles = FLAGS.map((flag) => flag.title);
 
 tap.equal(
   getFlagsEmojisInlined(titles, new Set()),
-  " 🌍 🚧 🐲",
+  " 🌍 🚧 ",
   "getFlagsEmojisInlined without flag to ignore"
 );
 
