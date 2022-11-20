@@ -1,5 +1,5 @@
 // Import Third-party Dependencies
-import { Network } from "vis-network/standalone/esm/index.js";
+import { Network } from "vis-network";
 
 // Import Internal Dependencies
 import * as CONSTANTS from "./constants.js";
@@ -44,6 +44,8 @@ export const NETWORK_OPTIONS = {
     }
   }
 };
+const kMinScale = 0.03;
+const kMaxScale = 0.5;
 
 export default class NodeSecureNetwork {
   // DOM Elements
@@ -93,6 +95,7 @@ export default class NodeSecureNetwork {
       this.isLoaded = true;
       this.network.stopSimulation();
       this.network.on("click", this.neighbourHighlight.bind(this));
+      this.network.on("zoom", this.checkZoomLimits.bind(this));
     });
 
     this.network.stabilize(500);
@@ -215,5 +218,14 @@ export default class NodeSecureNetwork {
     // transform the object into an array
     this.nodes.update(Object.values(allNodes));
     this.network.stopSimulation();
+  }
+
+  checkZoomLimits({ scale }) {
+    if (scale <= kMinScale) {
+      this.network.moveTo({ scale: kMinScale });
+    }
+    else if (scale >= kMaxScale) {
+      this.network.moveTo({ scale: kMaxScale });
+    }
   }
 }
